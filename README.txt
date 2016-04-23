@@ -1,5 +1,3 @@
-# Sierra_Pottorff_CSCI2270_FinalProject
-
 Project Summary:
 We will be implementing a program that will organize basketball team’s information 
 using hash tables. Each team will be established with their names, win/lose ration, 
