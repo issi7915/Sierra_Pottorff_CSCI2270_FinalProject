@@ -26,6 +26,7 @@ class HashTable
 		HashTable();
 		~HashTable();
 		void printTableContents();
+		void guide();
 		void insertMovie(std::string name, int year);
 		void deleteMovie(std::string name);
 		void findMovie(std::string name);

@@ -12,12 +12,7 @@ int main()
     int R, Y, N;
 
     while(1){
-        cout << "======Main Menu======" << endl;
-        cout << "1. Insert movie" << endl;
-        cout << "2. Delete movie" << endl;
-        cout << "3. Find movie" << endl;
-        cout << "4. Print table contents" << endl;
-        cout << "5. Quit" << endl;
+        ht.guide();
         getline(cin,variable);
 
         if(variable == "1"){

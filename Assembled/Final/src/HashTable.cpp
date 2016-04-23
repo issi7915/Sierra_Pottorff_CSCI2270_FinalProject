@@ -101,3 +101,12 @@ void HashTable::insertMovie(string title, int year){
     }
     return;
 }
+
+void HashTable::guide(){
+        cout << "======Main Menu======" << endl;
+        cout << "1. Insert movie" << endl;
+        cout << "2. Delete movie" << endl;
+        cout << "3. Find movie" << endl;
+        cout << "4. Print table contents" << endl;
+        cout << "5. Quit" << endl;
+}

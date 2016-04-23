@@ -1,0 +1,15 @@
+# depslib dependency file v1.0
+1461447255 source:/home/user/CSCI2270/Sierra_Pottorff_CSCI2270_FinalProject/Assembled/Final/main.cpp
+	"HashTable.h"
+	<iostream>
+	<fstream>
+	<sstream>
+
+1461447601 /home/user/CSCI2270/Sierra_Pottorff_CSCI2270_FinalProject/Assembled/Final/include/HashTable.h
+	<string>
+	<vector>
+
+1461447255 source:/home/user/CSCI2270/Sierra_Pottorff_CSCI2270_FinalProject/Assembled/Final/src/HashTable.cpp
+	"HashTable.h"
+	<iostream>
+
