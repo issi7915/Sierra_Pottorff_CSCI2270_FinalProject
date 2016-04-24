@@ -152,14 +152,68 @@ void HashTable::updateLoss(string teamName){
 
 }
 
+void HashTable::addPlayer(string teamName, string player, int shot, int handles, int defense){
+    int index = hashSum(teamName);
+    HashElem *tmp = hashTable[index];
+
+    bool found = false;
+
+    while(tmp != NULL){
+        if(tmp->title == teamName){
+            Player p1;
+            p1.name = player;
+            p1.shot = shot;
+            p1.handles = handles;
+            p1.defense = defense;
+            tmp->roster.push_back(p1);
+            found = true;
+            cout<<player<<" added to "<<teamName<<"'s roster."<<endl;
+        }
+        tmp = tmp->next;
+    }
+
+    if(!found)
+        cout<<"Team not found. "<<endl;
+
+}
+
+void HashTable::printRoster(string teamName){
+     int index = hashSum(teamName);
+    HashElem *tmp = hashTable[index];
+
+    bool found = false;
+
+    while(tmp != NULL){
+        if(tmp->title == teamName){
+            found = true;
+            cout<<teamName<<"'s Roster: "<<endl;
+            cout<<"--";
+            for(unsigned int i = 0; i < tmp->roster.size(); i++){
+                cout<<tmp->roster[i].name<<"--";
+            }
+            cout<<endl;
+
+        }
+        tmp = tmp->next;
+    }
+
+    if(!found)
+        cout<<"Team not found. "<<endl;
+
+}
+
 void HashTable::guide(){
         cout << "======My League======" << endl;
         cout << "1. Add Team" << endl;
         cout << "2. Remove Team" << endl;
-        cout << "3. Print Team Stats" << endl;
+        cout << "3. Print Teams" << endl;
         cout << "======Team Manager=====" <<endl;
         cout << "4. Update Win" << endl;
         cout << "5. Update Loss" << endl;
-        cout << "6. Print Teams" << endl;
-        cout << "7. Quit" << endl;
+        cout << "6. Print Team Stats" << endl;
+        cout << "========Roster========"<<endl;
+        cout << "7. Add Player" <<endl;
+        cout << "8. Remove Player"<<endl;
+        cout << "9. Print Roster" <<endl;
+        cout << "10. Quit" << endl;
 }

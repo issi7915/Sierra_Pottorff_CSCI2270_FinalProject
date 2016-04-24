@@ -53,7 +53,7 @@ class HashTable
 		void updateWin(std::string name);                       //DONE
 		void updateLoss(std::string name);                      //DONE
 		void rankTeams();
-		void addPlayer(std::string name, int shot, int handles, int defense);
+		void addPlayer(std::string teamName, std::string player, int shot, int handles, int defense);
 		void printRoster(std::string teamName);
 		void removePlayer(std::string name);
 		void game(std::string team1, std::string team2);
