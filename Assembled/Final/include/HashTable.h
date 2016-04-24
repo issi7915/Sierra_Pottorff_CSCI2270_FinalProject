@@ -28,12 +28,12 @@ struct HashElem{
     HashElem *previous;
 
 	HashElem(){};
-	HashElem(std::string in_title, std:: string in_city)
+	HashElem(std::string in_title, std:: string in_city, std::int w, std::int l)
 	{
 		title = in_title;
 		city = in_city;
-		wins = 0;
-		loses = 0;
+		wins = w;
+		loses = l;
 		next = NULL;
 		previous = NULL;
 	}
@@ -45,20 +45,21 @@ class HashTable
 	public:
 		HashTable();
 		~HashTable();
-		void printTableContents();                               //DONE
+		void printLeague();                               //DONE
 		void guide();                                           //DONE-Menu
-		void insertMovie(std::string name, std::string city);   //DONE
-		void deleteMovie(std::string name);                     //DONE
-		void findMovie(std::string name);                       //DONE-PrintTeamStats
-		void updateWin(std::string name);                       //DONE
-		void updateLoss(std::string name);                      //DONE
+		void insertTeam(std::string name, std::string city, std::int wins, std::int losses);   //DONE
+		void deleteTeam(std::string name);                     //DONE
+		void TeamStats(std::string name);                      //DONE
 		void rankTeams();
-		void addPlayer(std::string teamName, std::string player, int shot, int handles, int defense);
-		void printRoster(std::string teamName);
-		void removePlayer(std::string name);
-		void game(std::string team1, std::string team2);
+		void addPlayer(std::string teamName, std::string player, int shot, int handles, int defense); //DONE
+		void printRoster(std::string teamName); //Done
+		void removePlayer(std::string teamName, std::string name);
+		void game(std::string team1, std::string team2, std::string winner); //Done
 	private:
-		int hashSum(std::string x);
+    void findTeam(std::string name);                       //DONE
+    void updateWin(std::string name);                      //DONE
+		void updateLoss(std::string name);                    //DONE
+		int hashSum(std::string x);                           //DONE
 		int tableSize = 10;
 		HashElem* hashTable[10];
 		int numTeams = 0;

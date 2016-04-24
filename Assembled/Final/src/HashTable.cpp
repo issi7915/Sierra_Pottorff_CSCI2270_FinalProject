@@ -27,7 +27,7 @@ int HashTable::hashSum(string x)
     return sum;
 }
 
-void HashTable::deleteMovie(string title){
+void HashTable::deleteTeam(string title){
     int index = hashSum(title);
     HashElem *tmp = hashTable[index];
     while(tmp != NULL){
@@ -56,27 +56,32 @@ void HashTable::deleteMovie(string title){
     return;
 }
 
-void HashTable::findMovie(string title){
+void HashTable::TeamStats(string team){
+  HashElem* team = findTeam(team);
+  cout<<"--------------------------------------------------------------------------------"<<endl;cout<<endl;
+  cout<<"Team:    "<<team->title<< ", " << team->city << endl;
+  cout<<endl;
+  cout<<"------Wins---"<<"---Loses---"<<"---PCT------"<<endl;
+  cout<<"       "<<team->wins<<"          "<<team->loses<<"        "<<team->wins/(team->loses + team->wins)<<endl;
+  cout<<endl;
+  cout<<"--------------------------------------------------------------------------------"<<endl;
+  return;
+}
+
+HashElem* HashTable::findTeam(string title){
     int index = hashSum(title);
     HashElem *tmp = hashTable[index];
     while(tmp != NULL){
         if(tmp->title == title){
-            cout<<"--------------------------------------------------------------------------------"<<endl;cout<<endl;
-            cout<<"Team:    "<<tmp->title<< ", " << tmp->city << endl;
-            cout<<endl;
-            cout<<"------Wins---"<<"---Loses---"<<"---PCT------"<<endl;
-            cout<<"       "<<tmp->wins<<"          "<<tmp->loses<<"        "<<tmp->wins/(tmp->loses + tmp->wins)<<endl;
-            cout<<endl;
-            cout<<"--------------------------------------------------------------------------------"<<endl;
-            return;
+            return temp;
         }
         tmp = tmp->next;
     }
     cout << "not found" << endl;
-    return;
+    return NULL;
 }
 
-void HashTable::printTableContents(){
+void HashTable::printLeague(){
     int c = 0;
     cout<<"========MY LEAGUE TEAMS========"<<endl;cout<<endl;
     for(int k = 0; k<tableSize; k++){
@@ -94,10 +99,10 @@ void HashTable::printTableContents(){
     return;
 }
 
-void HashTable::insertMovie(string title, string city){
+void HashTable::insertTeam(string title, string city, int wins, int losses){
     int index = hashSum(title);
     if(hashTable[index] == NULL){
-        hashTable[index] = new HashElem(title, city);
+        hashTable[index] = new HashElem(title, city, wins, losses);
         numTeams++;
     }
     else{
@@ -105,7 +110,7 @@ void HashTable::insertMovie(string title, string city){
         while(temp->next != NULL){
             temp = temp->next;
         }
-        temp->next = new HashElem(title, city);
+        temp->next = new HashElem(title, city, wins, losses);
         temp->next->previous = temp;
         numTeams++;
     }
@@ -177,8 +182,26 @@ void HashTable::addPlayer(string teamName, string player, int shot, int handles,
 
 }
 
+void HashTable::removePlayer(string Team, string player){
+  HashElem *tmp = findTeam(Team);
+  for(int i = 0; i < tmp->roster.size(); i ++){
+    if(tmp->roster[i].name == player){
+      //delete and
+      tmp->roster.erase(tmp->roster[i]);
+    }
+  }
+}
+
+void HashTable::game(stringing homeTeam, string awayTeam, string winner){
+  updateWin(winner);
+  if(winner == homeTeam){
+    updateLoss(awayTeam);
+  }
+  else updateLoss(homeTeam);
+}
+
 void HashTable::printRoster(string teamName){
-     int index = hashSum(teamName);
+    int index = hashSum(teamName);
     HashElem *tmp = hashTable[index];
 
     bool found = false;
@@ -202,18 +225,23 @@ void HashTable::printRoster(string teamName){
 
 }
 
+void HashTable::rankTeams(){
+
+}
+
 void HashTable::guide(){
         cout << "======My League======" << endl;
         cout << "1. Add Team" << endl;
         cout << "2. Remove Team" << endl;
         cout << "3. Print Teams" << endl;
         cout << "======Team Manager=====" <<endl;
-        cout << "4. Update Win" << endl;
-        cout << "5. Update Loss" << endl;
-        cout << "6. Print Team Stats" << endl;
-        cout << "========Roster========"<<endl;
-        cout << "7. Add Player" <<endl;
-        cout << "8. Remove Player"<<endl;
-        cout << "9. Print Roster" <<endl;
-        cout << "10. Quit" << endl;
+        //cout << "4. Update Win" << endl;
+        //cout << "5. Update Loss" << endl;
+        cout << "4. Game" << endl;
+        cout << "5. Team Stats" << endl;
+        //cout << "========Roster========"<<endl;
+        cout << "6. Add Player" <<endl;
+        cout << "7. Remove Player"<<endl;
+        cout << "8. Print Roster" <<endl;
+        cout << "9. Quit" << endl;
 }

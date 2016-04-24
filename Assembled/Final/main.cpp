@@ -8,7 +8,7 @@ using namespace std;
 int main()
 {
     HashTable ht = HashTable();
-    string variable, name, city;
+    string variable, name, city, team1, team2, winner;
 
     while(1){
         ht.guide();
@@ -19,38 +19,36 @@ int main()
             getline(cin, name);
             cout << "Enter City:" << endl;
             getline(cin, city);
-            ht.insertMovie(name, city);
+            ht.insertTeam(name, city);
         }
         if(variable == "2"){
             cout << "Enter title:" << endl;
             getline(cin, name);
-            ht.deleteMovie(name);
+            ht.deleteTeam(name);
         }
 
         if(variable == "3"){
-            ht.printTableContents();
+            ht.printLeague();
         }
 
         if(variable == "4"){
-            cout << "Team Name:" << endl;
-            getline(cin, name);
-            ht.updateWin(name);
+            cout << "Home Team:" << endl;
+            getline(cin, team1);
+            cout << "Away Team:" << endl;
+            getline(cin, team2);
+            cout << "Who won?" << endl;
+            getline(cin, winner);
+            ht.Game(team1, team2, winner);
 
 
         }
         if(variable == "5"){
             cout << "Team Name:" << endl;
             getline(cin, name);
-            ht.updateLoss(name);
+            ht.TeamStats(name);
         }
 
         if(variable == "6"){
-            cout << "Team Name:" << endl;
-            getline(cin, name);
-            ht.findMovie(name);
-        }
-
-         if(variable == "7"){
             string pName;
             string input;
             int shot, handling, defense;
@@ -70,14 +68,23 @@ int main()
             ht.addPlayer(name,pName,shot,handling,defense);
         }
 
-        if(variable == "9"){
-            cout << "Team Name:" << endl;
-            getline(cin, name);
-            ht.printRoster(name);
+        if(variable == '7'){
+          string pName;
+          cout << "Team Name:" << endl;
+          getline(cin, name);
+          cout << "Player Name:" << endl;
+          getline(cin, pName);
+          ht.removePlayer(name, pName);
+        }
+
+        if(variable == "8"){
+          cout << "Team Name:" << endl;
+          getline(cin, name);
+          ht.printRoster(name);
 
         }
 
-        if(variable == "10"){
+        if(variable == "9"){
             cout<<"Goodbye!"<<endl;
             return 0;
         }
