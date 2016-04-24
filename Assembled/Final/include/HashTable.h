@@ -28,7 +28,7 @@ struct HashElem{
     HashElem *previous;
 
 	HashElem(){};
-	HashElem(std::string in_title, std:: string in_city, std::int w, std::int l)
+	HashElem(std::string in_title, std:: string in_city, int w, int l)
 	{
 		title = in_title;
 		city = in_city;
@@ -47,7 +47,7 @@ class HashTable
 		~HashTable();
 		void printLeague();                               //DONE
 		void guide();                                           //DONE-Menu
-		void insertTeam(std::string name, std::string city, std::int wins, std::int losses);   //DONE
+		void insertTeam(std::string name, std::string city, int wins, int losses);   //DONE
 		void deleteTeam(std::string name);                     //DONE
 		void TeamStats(std::string name);                      //DONE
 		void rankTeams();
@@ -56,7 +56,7 @@ class HashTable
 		void removePlayer(std::string teamName, std::string name);
 		void game(std::string team1, std::string team2, std::string winner); //Done
 	private:
-    void findTeam(std::string name);                       //DONE
+    HashElem* findTeam(std::string name);                       //DONE
     void updateWin(std::string name);                      //DONE
 		void updateLoss(std::string name);                    //DONE
 		int hashSum(std::string x);                           //DONE

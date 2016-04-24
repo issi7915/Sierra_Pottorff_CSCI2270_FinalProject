@@ -56,29 +56,29 @@ void HashTable::deleteTeam(string title){
     return;
 }
 
-void HashTable::TeamStats(string team){
-  HashElem* team = findTeam(team);
-  cout<<"--------------------------------------------------------------------------------"<<endl;cout<<endl;
-  cout<<"Team:    "<<team->title<< ", " << team->city << endl;
-  cout<<endl;
-  cout<<"------Wins---"<<"---Loses---"<<"---PCT------"<<endl;
-  cout<<"       "<<team->wins<<"          "<<team->loses<<"        "<<team->wins/(team->loses + team->wins)<<endl;
-  cout<<endl;
-  cout<<"--------------------------------------------------------------------------------"<<endl;
-  return;
-}
-
 HashElem* HashTable::findTeam(string title){
     int index = hashSum(title);
     HashElem *tmp = hashTable[index];
     while(tmp != NULL){
         if(tmp->title == title){
-            return temp;
+            return tmp;
         }
         tmp = tmp->next;
     }
     cout << "not found" << endl;
     return NULL;
+}
+
+void HashTable::TeamStats(string team){
+  HashElem* t = findTeam(team);
+  cout<<"--------------------------------------------------------------------------------"<<endl;cout<<endl;
+  cout<<"Team:    "<<t->title<< ", " << t->city << endl;
+  cout<<endl;
+  cout<<"------Wins---"<<"---Loses---"<<"---PCT------"<<endl;
+  cout<<"       "<<t->wins<<"          "<<t->loses<<"        "<<t->wins/(t->loses + t->wins)<<endl;
+  cout<<endl;
+  cout<<"--------------------------------------------------------------------------------"<<endl;
+  return;
 }
 
 void HashTable::printLeague(){
@@ -187,17 +187,20 @@ void HashTable::removePlayer(string Team, string player){
   for(int i = 0; i < tmp->roster.size(); i ++){
     if(tmp->roster[i].name == player){
       //delete and
-      tmp->roster.erase(tmp->roster[i]);
+      tmp->roster.erase(tmp->roster.begin() + i);
     }
   }
 }
 
-void HashTable::game(stringing homeTeam, string awayTeam, string winner){
+void HashTable::game(string homeTeam, string awayTeam, string winner){
   updateWin(winner);
   if(winner == homeTeam){
     updateLoss(awayTeam);
   }
-  else updateLoss(homeTeam);
+  else {
+    updateLoss(homeTeam);
+  }
+  return;
 }
 
 void HashTable::printRoster(string teamName){

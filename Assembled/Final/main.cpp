@@ -15,11 +15,19 @@ int main()
         getline(cin,variable);
 
         if(variable == "1"){
+            string wins, losses;
+            int w, l;
             cout << "Enter Team Name:" << endl;
             getline(cin, name);
             cout << "Enter City:" << endl;
             getline(cin, city);
-            ht.insertTeam(name, city);
+            cout << "Wins:" << endl;
+            getline(cin, wins);
+            istringstream(wins) >> w;
+            cout << "Losses:" << endl;
+            getline(cin, losses);
+            istringstream(losses) >> l;
+            ht.insertTeam(name, city, w, l);
         }
         if(variable == "2"){
             cout << "Enter title:" << endl;
@@ -38,7 +46,7 @@ int main()
             getline(cin, team2);
             cout << "Who won?" << endl;
             getline(cin, winner);
-            ht.Game(team1, team2, winner);
+            ht.game(team1, team2, winner);
 
 
         }
@@ -68,7 +76,7 @@ int main()
             ht.addPlayer(name,pName,shot,handling,defense);
         }
 
-        if(variable == '7'){
+        if(variable == "7"){
           string pName;
           cout << "Team Name:" << endl;
           getline(cin, name);
