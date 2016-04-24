@@ -61,7 +61,13 @@ void HashTable::findMovie(string title){
     HashElem *tmp = hashTable[index];
     while(tmp != NULL){
         if(tmp->title == title){
-            cout << index << ":" << tmp->title << ":" << tmp->year << endl;
+            cout<<"--------------------------------------------------------------------------------"<<endl;cout<<endl;
+            cout<<"Team:    "<<tmp->title<< ", " << tmp->city << endl;
+            cout<<endl;
+            cout<<"------Wins---"<<"---Loses---"<<"---PCT------"<<endl;
+            cout<<"       "<<tmp->wins<<"          "<<tmp->loses<<"        "<<tmp->wins/(tmp->loses + tmp->wins)<<endl;
+            cout<<endl;
+            cout<<"--------------------------------------------------------------------------------"<<endl;
             return;
         }
         tmp = tmp->next;
@@ -72,10 +78,11 @@ void HashTable::findMovie(string title){
 
 void HashTable::printTableContents(){
     int c = 0;
+    cout<<"========MY LEAGUE TEAMS========"<<endl;cout<<endl;
     for(int k = 0; k<tableSize; k++){
         HashElem *rary = hashTable[k];
         while(rary !=NULL){
-            cout<<rary->title<<":"<<rary->year<<endl;
+            cout<<rary->title<<",   "<<rary->city<<endl;
             rary = rary->next;
             c++;
         }
@@ -83,30 +90,76 @@ void HashTable::printTableContents(){
     if(c == 0){
         cout<<"empty"<<endl;
     }
+    cout<<endl;
     return;
 }
 
-void HashTable::insertMovie(string title, int year){
+void HashTable::insertMovie(string title, string city){
     int index = hashSum(title);
     if(hashTable[index] == NULL){
-        hashTable[index] = new HashElem(title, year);
+        hashTable[index] = new HashElem(title, city);
+        numTeams++;
     }
     else{
         HashElem *temp = hashTable[index];
         while(temp->next != NULL){
             temp = temp->next;
         }
-        temp->next = new HashElem(title, year);
+        temp->next = new HashElem(title, city);
         temp->next->previous = temp;
+        numTeams++;
     }
     return;
 }
 
+void HashTable::updateWin(string teamName){
+    int index = hashSum(teamName);
+    HashElem *tmp = hashTable[index];
+    bool found = false;
+
+    while(tmp != NULL){
+        if(tmp->title == teamName){
+            tmp->wins++;
+            found = true;
+            cout<<endl;
+            cout<<"Win updated."<<endl;
+        }
+        tmp = tmp->next;
+    }
+
+    if(!found)
+        cout<<"Team not found. "<<endl;
+
+}
+
+void HashTable::updateLoss(string teamName){
+    int index = hashSum(teamName);
+    HashElem *tmp = hashTable[index];
+    bool found = false;
+
+    while(tmp != NULL){
+        if(tmp->title == teamName){
+            tmp->loses++;
+            found = true;
+            cout<<endl;
+            cout<<"Loss updated."<<endl;
+        }
+        tmp = tmp->next;
+    }
+
+    if(!found)
+        cout<<"Team not found. "<<endl;
+
+}
+
 void HashTable::guide(){
-        cout << "======Main Menu======" << endl;
-        cout << "1. Insert movie" << endl;
-        cout << "2. Delete movie" << endl;
-        cout << "3. Find movie" << endl;
-        cout << "4. Print table contents" << endl;
-        cout << "5. Quit" << endl;
+        cout << "======My League======" << endl;
+        cout << "1. Add Team" << endl;
+        cout << "2. Remove Team" << endl;
+        cout << "3. Print Team Stats" << endl;
+        cout << "======Team Manager=====" <<endl;
+        cout << "4. Update Win" << endl;
+        cout << "5. Update Loss" << endl;
+        cout << "6. Print Teams" << endl;
+        cout << "7. Quit" << endl;
 }
