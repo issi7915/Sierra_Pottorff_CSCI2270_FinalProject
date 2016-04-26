@@ -64,8 +64,12 @@ class HashTable
         void updateWin(std::string name);                      //DONE
 		void updateLoss(std::string name);                    //DONE
 		int hashSum(std::string x);                           //DONE
+<<<<<<< HEAD
 		void unrank();
 		int tableSize = 10;
+=======
+        int tableSize = 10;
+>>>>>>> fdfa66b83782dc45ccd0c63eded91f41eb3748c7
 		HashElem* hashTable[10];
 		int numTeams = 0;
 		bool TeamsR = false;
