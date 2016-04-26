@@ -47,6 +47,7 @@ void HashTable::deleteTeam(string title){
                     tmp->next->previous = NULL;
                 }
            }
+           numTeams--;
             return;
         }
         tmp = tmp->next;
@@ -82,12 +83,13 @@ void HashTable::TeamStats(string team){
 }
 
 void HashTable::printLeague(){
+    rankTeams();
     int c = 0;
     cout<<"========MY LEAGUE TEAMS========"<<endl;cout<<endl;
     for(int k = 0; k<tableSize; k++){
         HashElem *rary = hashTable[k];
         while(rary !=NULL){
-            cout<<rary->title<<",   "<<rary->city<<endl;
+            cout<<rary->Rank<<":"<<rary->title<<",   "<<rary->city<<endl;
             rary = rary->next;
             c++;
         }
@@ -180,27 +182,34 @@ void HashTable::addPlayer(string teamName, string player, int shot, int handles,
     if(!found)
         cout<<"Team not found. "<<endl;
 
+    return;
+
 }
 
 void HashTable::removePlayer(string Team, string player){
   HashElem *tmp = findTeam(Team);
-  for(unsigned int i = 0; i < tmp->roster.size(); i ++){
+  if(tmp == NULL){
+    return;
+  }
+  for(int i = 0; i < tmp->roster.size(); i ++){
     if(tmp->roster[i].name == player){
-      //delete and
       tmp->roster.erase(tmp->roster.begin() + i);
     }
   }
 }
 
 void HashTable::game(string homeTeam, string awayTeam, string winner){
-  updateWin(winner);
-  if(winner == homeTeam){
+    if(findTeam(homeTeam) == NULL || findTeam(awayTeam) == NULL){
+        return;
+    }
+    updateWin(winner);
+    if(winner == homeTeam){
     updateLoss(awayTeam);
-  }
-  else {
+    }
+    else {
     updateLoss(homeTeam);
-  }
-  return;
+    }
+    return;
 }
 
 void HashTable::printRoster(string teamName){
@@ -229,7 +238,40 @@ void HashTable::printRoster(string teamName){
 }
 
 void HashTable::rankTeams(){
-
+    HashElem *rary;
+    int c = 0;
+    double p;
+    string name;
+    HashElem *t;
+    vector<double> pct;
+    pct.push_back(100);
+    vector<string> Rteams;
+    Rteams.push_back("INFINITY");
+    for(int r = 1; r < numTeams+1; r++){
+        double pMax = -1;
+        //find the next max value, smaller that the others but the biggest left
+        for(int k = 1; k<tableSize; k++){
+            rary = hashTable[k];
+            while(rary !=NULL){
+                //calculate pct
+                p = rary->wins/(rary->loses + rary->wins);
+                //check if new pct (p) is bigger than biggest pct found, but less than the previously ranked pct
+                if(p > pMax && p < pct[r-1]){
+                    pMax = p;
+                    name = rary->title;
+                }
+                rary = rary->next;
+            }
+        }
+        cout<<"case: no same rank"<<endl;
+        Rteams.push_back(name);
+        pct.push_back(pMax);
+        //assign rank
+        t = findTeam(name);
+        t->Rank = r;
+        c = 0;
+    }
+    return;
 }
 
 void HashTable::guide(){
@@ -238,11 +280,8 @@ void HashTable::guide(){
         cout << "2. Remove Team" << endl;
         cout << "3. Print Teams" << endl;
         cout << "======Team Manager=====" <<endl;
-        //cout << "4. Update Win" << endl;
-        //cout << "5. Update Loss" << endl;
         cout << "4. Game" << endl;
         cout << "5. Team Stats" << endl;
-        //cout << "========Roster========"<<endl;
         cout << "6. Add Player" <<endl;
         cout << "7. Remove Player"<<endl;
         cout << "8. Print Roster" <<endl;
