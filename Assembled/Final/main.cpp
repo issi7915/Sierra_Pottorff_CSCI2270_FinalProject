@@ -40,13 +40,11 @@ int main()
         }
 
         if(variable == "4"){
-            cout << "Home Team:" << endl;
+            cout << "Winning Team:" << endl;
             getline(cin, team1);
-            cout << "Away Team:" << endl;
+            cout << "Loosing Team:" << endl;
             getline(cin, team2);
-            cout << "Who won?" << endl;
-            getline(cin, winner);
-            ht.game(team1, team2, winner);
+            ht.game(team1, team2);
 
 
         }

@@ -86,7 +86,9 @@ void HashTable::TeamStats(string team){
 }
 
 void HashTable::printLeague(){
-    rankTeams();
+    if(!TeamsR){
+       rankTeams();
+    }
     int c = 0;
     cout<<"========MY LEAGUE TEAMS========"<<endl;cout<<endl;
     for(int k = 0; k<tableSize; k++){
@@ -119,6 +121,7 @@ void HashTable::insertTeam(string title, string city, int wins, int losses){
         temp->next->previous = temp;
         numTeams++;
     }
+    TeamsR = false;
     return;
 }
 
@@ -201,17 +204,14 @@ void HashTable::removePlayer(string Team, string player){
   }
 }
 
-void HashTable::game(string homeTeam, string awayTeam, string winner){
-    if(findTeam(homeTeam) == NULL || findTeam(awayTeam) == NULL){
+void HashTable::game(string winTeam, string lossTeam){
+    if(findTeam(winTeam) == NULL || findTeam(lossTeam) == NULL){
         return;
     }
-    updateWin(winner);
-    if(winner == homeTeam){
-    updateLoss(awayTeam);
-    }
-    else {
-    updateLoss(homeTeam);
-    }
+    unrank();
+    TeamsR = false;
+    updateWin(winTeam);
+    updateLoss(lossTeam);
     return;
 }
 
@@ -241,6 +241,7 @@ void HashTable::printRoster(string teamName){
 }
 
 void HashTable::rankTeams(){
+    unrank();
     HashElem *rary;
     int c = 0;
     double p;
@@ -257,24 +258,50 @@ void HashTable::rankTeams(){
             rary = hashTable[k];
             while(rary !=NULL){
                 //calculate pct
-                p = rary->wins/(rary->loses + rary->wins);
-                //check if new pct (p) is bigger than biggest pct found, but less than the previously ranked pct
-                if(p > pMax && p < pct[r-1]){
-                    pMax = p;
-                    name = rary->title;
+                if(!rary->visited){
+                    p = rary->wins/(rary->loses + rary->wins);
+                    //check if new pct (p) is bigger than biggest pct found, but less than the previously ranked pct
+                    if(p >= pMax){
+                        pMax = p;
+                        name = rary->title;
+                    }
+
                 }
                 rary = rary->next;
             }
         }
-        cout<<"case: no same rank"<<endl;
-        Rteams.push_back(name);
-        pct.push_back(pMax);
-        //assign rank
-        t = findTeam(name);
-        t->Rank = r;
-        c = 0;
+        if(pMax == pct[r-1]){
+            cout<<"here"<<endl;
+            t = findTeam(name);
+            HashElem *prev = findTeam(Rteams[r-1]);
+            Rteams.push_back(name);
+            pct.push_back(pMax);
+            t->Rank = prev->Rank;
+            t->visited = true;
+        }
+        else{
+            Rteams.push_back(name);
+            pct.push_back(pMax);
+            //assign rank
+            t = findTeam(name);
+            t->Rank = r;
+            t->visited = true;
+        }
     }
+    TeamsR = true;
     return;
+}
+
+void HashTable::unrank(){
+    HashElem *tmp = NULL;
+    for(unsigned int i = 0; i < tableSize; i++){
+        tmp = hashTable[i];
+        while(tmp != NULL){
+            tmp->Rank = -1;
+            tmp->visited = false;
+            tmp = tmp->next;
+        }
+    }
 }
 
 void HashTable::guide(){
