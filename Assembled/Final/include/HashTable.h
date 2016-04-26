@@ -27,6 +27,7 @@ struct HashElem{
 	HashElem *next;
     HashElem *previous;
     int Rank;
+    bool visited;
 
 	HashElem(){};
 	HashElem(std::string in_title, std:: string in_city, int w, int l)
@@ -38,6 +39,7 @@ struct HashElem{
 		next = NULL;
 		previous = NULL;
 		Rank = -1;
+		visited = false;
 	}
 
 };
@@ -62,7 +64,7 @@ class HashTable
         void updateWin(std::string name);                      //DONE
 		void updateLoss(std::string name);                    //DONE
 		int hashSum(std::string x);                           //DONE
-		int tableSize = 10;
+        int tableSize = 10;
 		HashElem* hashTable[10];
 		int numTeams = 0;
 
