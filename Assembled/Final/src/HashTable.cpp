@@ -20,7 +20,7 @@ HashTable::~HashTable()
 int HashTable::hashSum(string x)
 {
     int sum = 0;
-    for(int i = 0; i<x.size(); i++){
+    for(unsigned int i = 0; i<x.size(); i++){
         sum += x[i];
     }
     sum %= tableSize;
@@ -184,7 +184,7 @@ void HashTable::addPlayer(string teamName, string player, int shot, int handles,
 
 void HashTable::removePlayer(string Team, string player){
   HashElem *tmp = findTeam(Team);
-  for(int i = 0; i < tmp->roster.size(); i ++){
+  for(unsigned int i = 0; i < tmp->roster.size(); i ++){
     if(tmp->roster[i].name == player){
       //delete and
       tmp->roster.erase(tmp->roster.begin() + i);
