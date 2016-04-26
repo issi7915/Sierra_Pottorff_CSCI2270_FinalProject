@@ -52,14 +52,14 @@ class HashTable
 		void insertTeam(std::string name, std::string city, int wins, int losses);   //DONE
 		void deleteTeam(std::string name);                     //DONE
 		void TeamStats(std::string name);                      //DONE
-		void rankTeams();                                       //Done - same rank
+		void rankTeams();                                     //Done - case of two same pct
 		void addPlayer(std::string teamName, std::string player, int shot, int handles, int defense); //DONE
 		void printRoster(std::string teamName); //Done
-		void removePlayer(std::string teamName, std::string name);
+		void removePlayer(std::string teamName, std::string name); //DOne
 		void game(std::string team1, std::string team2, std::string winner); //Done
 	private:
-    HashElem* findTeam(std::string name);                   //DONE
-    void updateWin(std::string name);                      //DONE
+        HashElem* findTeam(std::string name);                       //DONE
+        void updateWin(std::string name);                      //DONE
 		void updateLoss(std::string name);                    //DONE
 		int hashSum(std::string x);                           //DONE
 		int tableSize = 10;

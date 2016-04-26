@@ -188,6 +188,9 @@ void HashTable::addPlayer(string teamName, string player, int shot, int handles,
 
 void HashTable::removePlayer(string Team, string player){
   HashElem *tmp = findTeam(Team);
+  if(tmp == NULL){
+    return;
+  }
   for(int i = 0; i < tmp->roster.size(); i ++){
     if(tmp->roster[i].name == player){
       tmp->roster.erase(tmp->roster.begin() + i);
@@ -260,23 +263,13 @@ void HashTable::rankTeams(){
                 rary = rary->next;
             }
         }
-
-        //check to see if p equals pct of a previously ranked team and that it's not the same team
-        if(pMax == pct[r-1] && Rteams[r-1] != name){
-            c++; //counter for number of teams with same pct
-            Rteams.push_back(name);
-            pct.push_back(pMax);
-            //assign rank to previous rank
-            t = findTeam(name);
-            t->Rank = r;
-        } else {
-            Rteams.push_back(name);
-            pct.push_back(pMax);
-            //assign rank
-            t = findTeam(name);
-            t->Rank = r;
-            c = 0;
-        }
+        cout<<"case: no same rank"<<endl;
+        Rteams.push_back(name);
+        pct.push_back(pMax);
+        //assign rank
+        t = findTeam(name);
+        t->Rank = r;
+        c = 0;
     }
     return;
 }
@@ -287,11 +280,8 @@ void HashTable::guide(){
         cout << "2. Remove Team" << endl;
         cout << "3. Print Teams" << endl;
         cout << "======Team Manager=====" <<endl;
-        //cout << "4. Update Win" << endl;
-        //cout << "5. Update Loss" << endl;
         cout << "4. Game" << endl;
         cout << "5. Team Stats" << endl;
-        //cout << "========Roster========"<<endl;
         cout << "6. Add Player" <<endl;
         cout << "7. Remove Player"<<endl;
         cout << "8. Print Roster" <<endl;
