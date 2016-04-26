@@ -25,9 +25,9 @@ struct HashElem{
 	double loses;
 	std::vector <Player> roster;
 	HashElem *next;
-    HashElem *previous;
-    int Rank;
-    bool visited;
+    	HashElem *previous;
+    	int Rank;
+    	bool visited;
 
 	HashElem(){};
 	HashElem(std::string in_title, std:: string in_city, int w, int l)
@@ -60,16 +60,12 @@ class HashTable
 		void removePlayer(std::string teamName, std::string name); //DOne
 		void game(std::string team1, std::string team2); //Done
 	private:
-        HashElem* findTeam(std::string name);                       //DONE
-        void updateWin(std::string name);                      //DONE
+        	HashElem* findTeam(std::string name);                       //DONE
+        	void updateWin(std::string name);                      //DONE
 		void updateLoss(std::string name);                    //DONE
 		int hashSum(std::string x);                           //DONE
-<<<<<<< HEAD
 		void unrank();
 		int tableSize = 10;
-=======
-        int tableSize = 10;
->>>>>>> fdfa66b83782dc45ccd0c63eded91f41eb3748c7
 		HashElem* hashTable[10];
 		int numTeams = 0;
 		bool TeamsR = false;
