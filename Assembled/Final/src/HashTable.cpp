@@ -72,14 +72,17 @@ HashElem* HashTable::findTeam(string title){
 
 void HashTable::TeamStats(string team){
   HashElem* t = findTeam(team);
-  cout<<"--------------------------------------------------------------------------------"<<endl;cout<<endl;
-  cout<<"Team:    "<<t->title<< ", " << t->city << endl;
-  cout<<endl;
-  cout<<"------Wins---"<<"---Loses---"<<"---PCT------"<<endl;
-  cout<<"       "<<t->wins<<"          "<<t->loses<<"        "<<t->wins/(t->loses + t->wins)<<endl;
-  cout<<endl;
-  cout<<"--------------------------------------------------------------------------------"<<endl;
-  return;
+      if(t != NULL){
+        cout<<"--------------------------------------------------------------------------------"<<endl;cout<<endl;
+        cout<<"Team:    "<<t->title<< ", " << t->city << endl;
+        cout<<endl;
+        cout<<"------Wins---"<<"---Loses---"<<"---PCT------"<<endl;
+        cout<<"       "<<t->wins<<"          "<<t->loses<<"        "<<t->wins/(t->loses + t->wins)<<endl;
+        cout<<endl;
+        cout<<"--------------------------------------------------------------------------------"<<endl;
+      }
+      else
+        return;
 }
 
 void HashTable::printLeague(){
