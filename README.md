@@ -12,9 +12,13 @@ to simulate games using roster line ups and each player’s performance level.
 How to Run:
 
 1) Extract "Final Project.zip" to your allocated directory.
+
 2) Assemble project by opening "Final.cpb" (CodeBlocks)
+
 3) Now code may be run using CodeBlocks Build & Compile tool.
+
 4) You will be able operate our program using menue options 1-9
+
 
 Dependencies:
 
@@ -23,7 +27,9 @@ System Requirements:
 Code::Blocks or some other Integrated Developement Environement to build and run the project.
 
 Group Members:
+
 Isaiah Sierra
+
 Nathan Porttoff
 
 Contributors:
@@ -31,6 +37,7 @@ Contributors:
 Open issus/bugs:
 
 -If you create a team named F it doesn't get ranked.
+
 -Wanting to simulate games using player status
 
 
