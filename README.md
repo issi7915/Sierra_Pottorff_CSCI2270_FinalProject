@@ -1,6 +1,7 @@
 # Sierra_Pottorff_CSCI2270_FinalProject
 
-Project Summary:
+PROJECT SUMMARY:
+
 
 We will be implementing a program that will organize basketball team’s information 
 using hash tables. Each team will be established with their names, win/lose ration, 
@@ -9,7 +10,7 @@ their wins and loses accordingly. Once we have enough teams in the data structur
 we will be able to rank individual teams according to their streak. We will be able 
 to simulate games using roster line ups and each player’s performance level.
 
-How to Run:
+HOW TO RUN:
 
 1) Extract "Final Project.zip" to your allocated directory.
 
@@ -20,21 +21,21 @@ How to Run:
 4) You will be able operate our program using menue options 1-9
 
 
-Dependencies:
+DEPENDENCIES:
 
-System Requirements:
+SYSTEM REQUIREMENTS:
 
 Code::Blocks or some other Integrated Developement Environement to build and run the project.
 
-Group Members:
+GROUP MEMEBERS
 
 Isaiah Sierra
 
 Nathan Porttoff
 
-Contributors:
+CONTRIBUTORS:
 
-Open issus/bugs:
+OPEN BUGS/ISSUES:
 
 -If you create a team named F it doesn't get ranked.
 
