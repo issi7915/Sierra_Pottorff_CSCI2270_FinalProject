@@ -9,7 +9,10 @@ we will be able to rank individual teams according to their streak. We will be a
 to simulate games using roster line ups and each player’s performance level.
 
 How to Run:
-Download the Assembled/Final folder.  You can find the HashTable.cpp file in src folder, the HashTable.h file in the include and the main.cpp in the folder.  To run the project open the Final.cbp file in Code::Blocks. It should open and include all the needed files.  If not, open and include the HashTable.cpp and HashTable.h in the project and it will compile and run.
+1) Extract "Final Project.zip" to your allocated directory.
+2) Assemble project by opening "Final.cpb" (CodeBlocks)
+3) Now code may be run using CodeBlocks Build & Compile tool.
+4) You will be able operate our program using menue options 1-9
 
 Dependencies:
 
@@ -24,3 +27,4 @@ Contributors:
 
 Open issus/bugs:
 If you create a team named F it doesn't get ranked.
+
