@@ -1,4 +1,6 @@
 # Sierra_Pottorff_CSCI2270_FinalProject
+[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bhttps%3A%2F%2Fgithub.com%2Fissi7915%2FSierra_Pottorff_CSCI2270_FinalProject.svg?type=shield)](https://app.fossa.io/projects/git%2Bhttps%3A%2F%2Fgithub.com%2Fissi7915%2FSierra_Pottorff_CSCI2270_FinalProject?ref=badge_shield)
+
 
 PROJECT SUMMARY:
 
@@ -42,3 +44,7 @@ OPEN BUGS/ISSUES:
 -Wanting to simulate games using player status
 
 
+
+
+## License
+[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bhttps%3A%2F%2Fgithub.com%2Fissi7915%2FSierra_Pottorff_CSCI2270_FinalProject.svg?type=large)](https://app.fossa.io/projects/git%2Bhttps%3A%2F%2Fgithub.com%2Fissi7915%2FSierra_Pottorff_CSCI2270_FinalProject?ref=badge_large)
